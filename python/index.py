@@ -1,4 +1,5 @@
 import os
+import sys
 import time
 import json
 import random
@@ -6,7 +7,7 @@ import hashlib
 import requests # pip install requests
 
 def get_ds():
-    salt = 'h8w582wxwgqvahcdkpvdhbh2w9casgfl'
+    salt = '1OUn34iIy84ypu9cpXyun2VaQ2zuFeLm'
     timestamp = str(int(time.time()))
     random_string_list = '0123456789abcdefghijklmnopqrstuvwxyz'
     random_string = ''.join(random.sample(random_string_list, 6))
@@ -31,9 +32,9 @@ def bbs_sign_reward(cookies, ds, game_info):
     url = "https://api-takumi.mihoyo.com/event/bbs_sign_reward/sign"
     headers = {
         'DS': ds,
-        'x-rpc-app_version': '2.3.0',
-        'x-rpc-client_type': '5',
-        "x-rpc-device_id": "bd7f912e-908c-3692-a520-e70206823495"
+        'x-rpc-app_version': '2.33.1',
+        'x-rpc-client_type': '4',
+        "x-rpc-device_id": "7ab3bc70b846186b9da1e816e6c6f08d"
     }
     post_data = {
         "act_id":"e202009291139501",
@@ -44,11 +45,7 @@ def bbs_sign_reward(cookies, ds, game_info):
     result = json.loads(req.text)
     return result
     
-def main_handler(event, context):
-    cookie_string = os.environ.get('cookie_string')
-    if(cookie_string == None or cookie_string == ""):
-        print("环境变量错误或为空！")
-        exit()
+def check_in(cookie_string):
     cookies = cookie_str2dict(cookie_string)
     game_info = get_game_info(cookies)
     if(game_info['retcode'] != 0):
@@ -58,3 +55,6 @@ def main_handler(event, context):
         print("执行成功！")
         print(game_info)
         print(bbs_sign_reward(cookies, get_ds(), game_info))
+
+#python index.py "_MHYUUID=bd20878a-1d35-457c-b84c-9ea929ced396; _ga=GA1.2.128251121.1653128272; _gid=GA1.2.321587272.1653128272; _gat=1"
+check_in(sys.argv[1])

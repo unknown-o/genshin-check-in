@@ -32,8 +32,6 @@ class genshin_checkin
     private function get_url($url)
     {
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_PROXY, '127.0.0.1:8888');
-
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
@@ -49,7 +47,6 @@ class genshin_checkin
     private function post_url($url, $data)
     {
         $curl = curl_init();
-        curl_setopt($curl, CURLOPT_PROXY, '127.0.0.1:8888');
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE);

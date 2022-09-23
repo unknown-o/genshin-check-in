@@ -19,6 +19,27 @@
 
 
 
+## 使用方式
+
+### python脚本
+
+```
+# 定时执行以下内容
+python index.py "你的米游社COOKIE"
+```
+
+
+
+### php脚本
+
+```
+// 修改php脚本后定时请求此页面
+$check_in = new genshin_checkin("你的米游社COOKIE");
+var_dump($check_in->main());
+```
+
+
+
 ## 作者信息
 
 作者博客：[某咸鱼的笔记](https://www.wunote.cn/)  

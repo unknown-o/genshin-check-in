@@ -9,7 +9,7 @@ class genshin_checkin
             "DS: $ds",
             'x-rpc-app_version: 2.33.1',
             'x-rpc-client_type: 4',
-            "x-rpc-device_id: 7ab3bc70b846186b9da1e816e6c6f08d"
+            "x-rpc-device_id: " . md5(time() . "MIHOYO")
         ];
     }
 
